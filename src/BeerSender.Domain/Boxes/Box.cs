@@ -37,11 +37,6 @@ public record CreateBox(
     Guid BoxId,
     int DesiredNumberOfSpots);
 
-public record AddShippingLabel(
-    Guid BoxId,
-    string TrackingCode,
-    Carrier Carrier);
-
 // Events
 public record BoxCreated(
     BoxCapacity Capacity);
@@ -60,7 +55,7 @@ public record ShippingLabelFailedToAdd(
 
 public record ShippingLabel(Carrier Carrier, string TrackingCode)
 {
-    private bool IsValid()
+    public bool IsValid()
     {
         return Carrier switch
         {
