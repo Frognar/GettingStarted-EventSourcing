@@ -26,6 +26,12 @@ public class Box : AggregateRoot
         IsClosed = true;
     }
 
+    public void Apply(BoxShipped @event)
+    {
+        ArgumentNullException.ThrowIfNull(@event);
+        IsShipped = true;
+    }
+
     public BoxCapacity? Capacity { get; private set; }
 
     public ShippingLabel? ShippingLabel { get; private set; }
@@ -35,6 +41,7 @@ public class Box : AggregateRoot
     public IEnumerable<BeerBottle> BeerBottles => _beerBottles;
 
     public bool IsClosed { get; private set; }
+    public bool IsShipped { get; private set; }
 
     public bool IsFull => _beerBottles.Count >= Capacity?.NumberOfSpots;
 }

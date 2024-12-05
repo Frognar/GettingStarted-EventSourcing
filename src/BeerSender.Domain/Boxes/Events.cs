@@ -36,3 +36,14 @@ public record FailedToCloseBox(
         BoxWasEmpty,
     }
 }
+
+public record BoxShipped;
+
+public record FailedToShipBox(
+    FailedToShipBox.FailReason Reason)
+{
+    public enum FailReason
+    {
+        BoxWasNotReady,
+    }
+}
