@@ -12,14 +12,14 @@ public class AddBeerBottleHandler(IEventStore eventStore)
         ArgumentNullException.ThrowIfNull(command);
         var boxStream = GetStream<Box>(command.BoxId);
         var box = boxStream.GetEntity();
-
-        if (box.IsFull)
+        if (!box.IsFull)
         {
-            boxStream.Append(new FailedToAddBeerBottle(FailedToAddBeerBottle.FailReason.BoxWasFull));
+            boxStream.Append(new BeerBottleAdded(command.BeerBottle));
         }
         else
         {
-            boxStream.Append(new BeerBottleAdded(command.BeerBottle));
+            boxStream.Append(new FailedToAddBeerBottle(
+                FailedToAddBeerBottle.FailReason.BoxWasFull));
         }
     }
 }

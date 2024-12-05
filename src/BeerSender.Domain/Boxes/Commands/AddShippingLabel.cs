@@ -11,8 +11,6 @@ public class AddShippingLabelHandler(IEventStore eventStore)
     {
         ArgumentNullException.ThrowIfNull(command);
         var boxStream = GetStream<Box>(command.BoxId);
-        var box = boxStream.GetEntity();
-
         if (command.Label.IsValid())
         {
             boxStream.Append(new ShippingLabelAdded(command.Label));

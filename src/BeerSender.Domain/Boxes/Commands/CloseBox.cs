@@ -17,7 +17,8 @@ public class CloseBoxHandler(IEventStore eventStore)
         }
         else
         {
-            boxStream.Append(new FailedToCloseBox(FailedToCloseBox.FailReason.BoxWasEmpty));
+            boxStream.Append(new FailedToCloseBox(
+                FailedToCloseBox.FailReason.BoxWasEmpty));
         }
     }
 }
