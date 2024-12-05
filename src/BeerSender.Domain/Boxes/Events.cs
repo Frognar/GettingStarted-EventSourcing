@@ -14,3 +14,14 @@ public record ShippingLabelFailedToAdd(
         TrackingCodeInvalid,
     }
 }
+
+public record FailedToAddBeerBottle(
+    FailedToAddBeerBottle.FailReason Reason)
+{
+    public enum FailReason
+    {
+        BoxWasFull,
+    }
+}
+
+public record BeerBottleAdded(BeerBottle BeerBottle);
