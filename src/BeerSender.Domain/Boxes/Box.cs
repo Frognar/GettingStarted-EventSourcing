@@ -17,16 +17,24 @@ public class Box : AggregateRoot
     public void Apply(BeerBottleAdded @event)
     {
         ArgumentNullException.ThrowIfNull(@event);
-        beerBottles.Add(@event.BeerBottle);
+        _beerBottles.Add(@event.BeerBottle);
+    }
+
+    public void Apply(BoxClosed @event)
+    {
+        ArgumentNullException.ThrowIfNull(@event);
+        IsClosed = true;
     }
 
     public BoxCapacity? Capacity { get; private set; }
 
     public ShippingLabel? ShippingLabel { get; private set; }
 
-    private List<BeerBottle> beerBottles = [];
+    private readonly List<BeerBottle> _beerBottles = [];
 
-    public IEnumerable<BeerBottle> BeerBottles => beerBottles;
+    public IEnumerable<BeerBottle> BeerBottles => _beerBottles;
 
-    public bool IsFull => beerBottles.Count >= Capacity?.NumberOfSpots;
+    public bool IsClosed { get; private set; }
+
+    public bool IsFull => _beerBottles.Count >= Capacity?.NumberOfSpots;
 }

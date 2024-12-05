@@ -25,3 +25,14 @@ public record FailedToAddBeerBottle(
 }
 
 public record BeerBottleAdded(BeerBottle BeerBottle);
+
+public record BoxClosed;
+
+public record FailedToCloseBox(
+    FailedToCloseBox.FailReason Reason)
+{
+    public enum FailReason
+    {
+        BoxWasEmpty,
+    }
+}
