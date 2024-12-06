@@ -1,3 +1,7 @@
 namespace BeerSender.Domain.Boxes;
 
-public record BeerBottle;
+public record BeerBottle(
+    string Brewery,
+    string Name,
+    double AlcoholPercentage,
+    BeerType BeerType);
