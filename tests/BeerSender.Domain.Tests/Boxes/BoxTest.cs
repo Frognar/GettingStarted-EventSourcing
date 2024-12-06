@@ -17,6 +17,9 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
     
     protected BeerBottleAdded Beer_bottle_added(BeerBottle bottle)
         => new(bottle);
+
+    protected FailedToAddBeerBottle Failed_to_add_bottle_because_box_was_full()
+        => new(FailedToAddBeerBottle.FailReason.BoxWasFull);
     
     // Test data
     [SuppressMessage(
