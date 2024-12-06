@@ -16,7 +16,7 @@ public class EventStream<TEntity>(IEventStore eventStore, Guid aggregateId)
         TEntity entity = new();
         foreach (StoredEvent @event in events)
         {
-            entity.Apply((dynamic)@event);
+            entity.Apply((dynamic)@event.EventData);
             _lastSequenceNumber = @event.SequenceNumber;
         }
 
