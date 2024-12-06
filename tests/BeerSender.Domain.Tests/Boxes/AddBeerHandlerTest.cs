@@ -22,6 +22,23 @@ public class AddBeerHandlerTest : BoxTest<AddBeerBottle>
             Beer_bottle_added(carte_blanche)
         );
     }
+
+    [Fact]
+    public void IfBoxIsNotFull_ThenBottleShouldBeAdded()
+    {
+        Given(
+            Box_created_with_capacity(2),
+            Add_beer_bottle(Oatmeal_double_ipa)
+        );
+        
+        When(
+            Add_beer_bottle(carte_blanche)
+        );
+
+        Then(
+            Beer_bottle_added(carte_blanche)
+        );
+    }
     
     // Commands
     protected AddBeerBottle Add_beer_bottle(BeerBottle bottle)

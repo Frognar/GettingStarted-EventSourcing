@@ -28,4 +28,15 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
         0.0,
         BeerType.Triple
     );
+    
+    // Test data
+    [SuppressMessage(
+        "Design",
+        "CA1051:Do not declare visible instance fields")]
+    protected BeerBottle Oatmeal_double_ipa = new(
+        "Fate",
+        "Oatmeal Double IPA",
+        7.3,
+        BeerType.Ipa
+    );
 }
