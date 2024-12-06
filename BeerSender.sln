@@ -7,6 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{66F2F49E-4A3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerSender.Domain", "src\BeerSender.Domain\BeerSender.Domain.csproj", "{B70C88A4-9AC6-477A-9569-C7B515B793B3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{499536AC-A36E-460F-BFFC-2374B27795CB}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerSender.Domain.Tests", "tests\BeerSender.Domain.Tests\BeerSender.Domain.Tests.csproj", "{44F645B7-AFFE-4F21-856A-37806F3133FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,8 +24,13 @@ Global
 		{B70C88A4-9AC6-477A-9569-C7B515B793B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B70C88A4-9AC6-477A-9569-C7B515B793B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B70C88A4-9AC6-477A-9569-C7B515B793B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44F645B7-AFFE-4F21-856A-37806F3133FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F645B7-AFFE-4F21-856A-37806F3133FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F645B7-AFFE-4F21-856A-37806F3133FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F645B7-AFFE-4F21-856A-37806F3133FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B70C88A4-9AC6-477A-9569-C7B515B793B3} = {66F2F49E-4A32-4570-B07E-45F730F0967D}
+		{44F645B7-AFFE-4F21-856A-37806F3133FE} = {499536AC-A36E-460F-BFFC-2374B27795CB}
 	EndGlobalSection
 EndGlobal
