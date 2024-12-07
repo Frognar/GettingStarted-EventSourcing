@@ -6,8 +6,8 @@ public record BoxCreated(
 public record ShippingLabelAdded(
     ShippingLabel Label);
 
-public record ShippingLabelFailedToAdd(
-    ShippingLabelFailedToAdd.FailReason Reason)
+public record FailedToAddShippingLabel(
+    FailedToAddShippingLabel.FailReason Reason)
 {
     public enum FailReason
     {
