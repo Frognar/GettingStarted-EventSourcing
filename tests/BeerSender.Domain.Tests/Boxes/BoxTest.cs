@@ -23,6 +23,9 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
 
     protected ShippingLabelAdded Shipping_label_added(ShippingLabel label)
         => new(label);
+
+    protected FailedToAddShippingLabel Failed_to_add_shipping_label_because_label_has_invalid_tracking_number()
+        => new(FailedToAddShippingLabel.FailReason.TrackingCodeInvalid);
     
     // Test data
     [SuppressMessage(
@@ -51,4 +54,11 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
     protected ShippingLabel Valid_FexEx_shipping_label = new(
         Carrier.FedEx,
         "DEF12345");
+
+    [SuppressMessage(
+        "Design",
+        "CA1051:Do not declare visible instance fields")]
+    protected ShippingLabel FexEx_shipping_label_with_invalid_tracking_number = new(
+        Carrier.FedEx,
+        "ABC12345");
 }
