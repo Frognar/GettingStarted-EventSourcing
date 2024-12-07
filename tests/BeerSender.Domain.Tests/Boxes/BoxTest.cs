@@ -20,6 +20,9 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
 
     protected FailedToAddBeerBottle Failed_to_add_bottle_because_box_was_full()
         => new(FailedToAddBeerBottle.FailReason.BoxWasFull);
+
+    protected ShippingLabelAdded Shipping_label_added(ShippingLabel label)
+        => new(label);
     
     // Test data
     [SuppressMessage(
@@ -32,7 +35,6 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
         BeerType.Triple
     );
     
-    // Test data
     [SuppressMessage(
         "Design",
         "CA1051:Do not declare visible instance fields")]
@@ -42,4 +44,11 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
         7.3,
         BeerType.Ipa
     );
+
+    [SuppressMessage(
+        "Design",
+        "CA1051:Do not declare visible instance fields")]
+    protected ShippingLabel Valid_FexEx_shipping_label = new(
+        Carrier.FedEx,
+        "DEF12345");
 }
