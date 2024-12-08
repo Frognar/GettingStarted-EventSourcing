@@ -41,6 +41,9 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
     
     protected FailedToCloseBox Failed_to_close_box_because_box_was_empty()
         => new(FailedToCloseBox.FailReason.BoxWasEmpty);
+
+    protected BoxShipped Box_shipped()
+        => new();
     
     // Test data
     [SuppressMessage(
