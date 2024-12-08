@@ -94,7 +94,7 @@ public abstract class CommandHandlerTest<TCommand>
                 // Empty event with matching type is OK. This means that the event class
                 // has no properties. If the types match in this situation, the correct
                 // event has been appended. So we should ignore this exception.
-                if (ex.Message.StartsWith("No members were found for comparison.", StringComparison.InvariantCulture))
+                if (!ex.Message.StartsWith("No members were found for comparison.", StringComparison.InvariantCulture))
                     throw;
             }
         }
