@@ -28,7 +28,7 @@ public class AddBeerHandlerTest : BoxTest<AddBeerBottle>
     {
         Given(
             Box_created_with_capacity(2),
-            Add_beer_bottle(Oatmeal_double_ipa)
+            Beer_bottle_added(Oatmeal_double_ipa)
         );
         
         When(

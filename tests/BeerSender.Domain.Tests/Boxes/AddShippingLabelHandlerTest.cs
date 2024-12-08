@@ -30,7 +30,6 @@ public class AddShippingLabelHandlerTest : BoxTest<AddShippingLabel>
             Box_created_with_capacity(6)
         );
         
-        
         When(
             Add_shipping_label(FexEx_shipping_label_with_invalid_tracking_number)
         );
