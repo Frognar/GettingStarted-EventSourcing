@@ -24,6 +24,23 @@ public class ShipBoxHandlerTest : BoxTest<ShipBox>
             Box_shipped()
         );
     }
+
+    [Fact]
+    public void IfNotClosedBoxIsShipped_ThenShouldFailToShipBox()
+    {
+        Given(
+            Box_created_with_capacity(6),
+            Beer_bottle_added(carte_blanche)
+        );
+
+        When(
+            Ship_box()
+        );
+        
+        Then(
+            Failed_to_ship_box_because_box_was_not_ready()
+        );
+    }
     
     // Commands
     protected ShipBox Ship_box() => new(Box_Id);
