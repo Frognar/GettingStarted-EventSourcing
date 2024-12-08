@@ -14,6 +14,8 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
     // Events
     protected BoxCreated Box_created_with_capacity(int capacity)
         => new(new BoxCapacity(capacity));
+    protected BoxCreated Small_box_created()
+        => Box_created_with_capacity(6);
     
     protected BeerBottleAdded Beer_bottle_added(BeerBottle bottle)
         => new(bottle);
