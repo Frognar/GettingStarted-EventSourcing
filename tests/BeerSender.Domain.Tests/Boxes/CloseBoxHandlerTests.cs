@@ -22,6 +22,22 @@ public class CloseBoxHandlerTests : BoxTest<CloseBox>
             Box_closed()
         );
     }
+
+    [Fact]
+    public void IfBoxIsEmpty_ThenShouldFailedToCloseBox()
+    {
+        Given(
+            Box_created_with_capacity(6)
+        );
+        
+        When(
+            Close_box()
+        );
+        
+        Then(
+            Failed_to_close_box_because_box_was_empty()
+        );
+    }
     
     // Commands
     protected CloseBox Close_box() => new(Box_Id);

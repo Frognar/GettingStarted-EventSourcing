@@ -27,7 +27,11 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
     protected FailedToAddShippingLabel Failed_to_add_shipping_label_because_label_has_invalid_tracking_number()
         => new(FailedToAddShippingLabel.FailReason.TrackingCodeInvalid);
 
-    protected BoxClosed Box_closed() => new();
+    protected BoxClosed Box_closed()
+        => new();
+    
+    protected FailedToCloseBox Failed_to_close_box_because_box_was_empty()
+        => new(FailedToCloseBox.FailReason.BoxWasEmpty);
     
     // Test data
     [SuppressMessage(
