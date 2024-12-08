@@ -19,6 +19,19 @@ public class CreateBoxHandlerTest : BoxTest<CreateBox>
         );
     }
     
+    [Fact]
+    public void IfBoxIsCreatedWithMediumDesiredNumberOfSpots_ThenMediumBoxShouldBeCreated()
+    {
+        Given();
+        When(
+            Create_box_with_desired_number_of_spots(10)
+        );
+        
+        Then(
+            Medium_box_created()
+        );
+    }
+    
     // Commands
     protected CreateBox Create_box_with_desired_number_of_spots(int desiredNumberOfSpots) => new(Box_Id, desiredNumberOfSpots);
 }
