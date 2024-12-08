@@ -11,7 +11,13 @@ public class ShipBoxHandler(IEventStore eventStore)
         ArgumentNullException.ThrowIfNull(command);
         var boxStream = GetStream<Box>(command.BoxId);
         var box = boxStream.GetEntity();
-        if (box.IsClosed)
+        if (box.IsShipped)
+        {
+
+            boxStream.Append(new FailedToShipBox(
+                FailedToShipBox.FailReason.BoxWasAlreadyShipped));
+        }
+        else if (box.IsClosed)
         {
             boxStream.Append(new BoxShipped());
         }

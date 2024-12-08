@@ -45,5 +45,6 @@ public record FailedToShipBox(
     public enum FailReason
     {
         BoxWasNotReady,
+        BoxWasAlreadyShipped,
     }
 }

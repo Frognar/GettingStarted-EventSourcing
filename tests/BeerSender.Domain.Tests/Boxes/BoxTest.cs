@@ -47,6 +47,9 @@ public abstract class BoxTest<TCommand> : CommandHandlerTest<TCommand>
 
     protected FailedToShipBox Failed_to_ship_box_because_box_was_not_ready()
         => new(FailedToShipBox.FailReason.BoxWasNotReady);
+
+    protected FailedToShipBox Failed_to_ship_box_because_box_was_already_shipped()
+        => new(FailedToShipBox.FailReason.BoxWasAlreadyShipped);
     
     // Test data
     [SuppressMessage(
