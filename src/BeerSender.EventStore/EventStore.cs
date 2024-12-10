@@ -31,9 +31,10 @@ public class EventStore (EventStoreConnectionFactory dbConnectionFactory)
             .Select(e => e.ToStoredEvent());
     }
 
+    private List<StoredEvent> _newEvents = [];
     public void AppendEvent(StoredEvent @event)
     {
-        throw new NotImplementedException();
+        _newEvents.Add(@event);
     }
 
     public void SaveChanges()
