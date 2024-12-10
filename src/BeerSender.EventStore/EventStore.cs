@@ -31,7 +31,7 @@ public class EventStore (EventStoreConnectionFactory dbConnectionFactory)
             .Select(e => e.ToStoredEvent());
     }
 
-    private List<StoredEvent> _newEvents = [];
+    private readonly List<StoredEvent> _newEvents = [];
     public void AppendEvent(StoredEvent @event)
     {
         _newEvents.Add(@event);
@@ -39,6 +39,25 @@ public class EventStore (EventStoreConnectionFactory dbConnectionFactory)
 
     public void SaveChanges()
     {
-        throw new NotImplementedException();
+        string insertCommand =
+            """
+            INSERT INTO [dbo].[Events]
+                ([AggregateId], [SequenceNumber], [Timestamp]
+                , [EventTypeName], [EventBody])
+            VALUES
+            (@AggregateId, @SequenceNumber, @Timestamp
+              , @EventTypeName, @EventBody)
+            """;
+
+        using IDbConnection connection = _dbConnectionFactory.Create();
+        connection.Open();
+        using IDbTransaction transaction = connection.BeginTransaction();
+        connection.Execute(
+            insertCommand,
+            _newEvents.Select(DatabaseEvent.FromStoredEvent),
+            transaction);
+
+        _newEvents.Clear();
+        transaction.Commit();
     }
 }
