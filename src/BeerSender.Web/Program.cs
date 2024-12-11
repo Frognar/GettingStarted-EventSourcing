@@ -1,4 +1,5 @@
 using BeerSender.Domain;
+using BeerSender.EventStore;
 using Scalar.AspNetCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.RegisterDomain();
+builder.Services.RegisterEventStore();
 
 builder.Services.AddEndpointsApiExplorer();
 
