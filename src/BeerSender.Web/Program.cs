@@ -1,3 +1,4 @@
+using BeerSender.Domain;
 using Scalar.AspNetCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+
+builder.Services.RegisterDomain();
 
 builder.Services.AddEndpointsApiExplorer();
 
