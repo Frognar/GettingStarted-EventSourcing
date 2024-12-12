@@ -8,6 +8,6 @@ public static class EventStoreExtensions
     public static void RegisterEventStore(this IServiceCollection services)
     {
         services.AddSingleton<EventStoreConnectionFactory>();
-        services.AddTransient<IEventStore, EventStore>();
+        services.AddScoped<IEventStore, EventStore>();
     }
 }
