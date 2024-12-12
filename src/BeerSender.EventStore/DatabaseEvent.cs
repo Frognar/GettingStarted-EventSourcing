@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 using BeerSender.Domain;
 
@@ -46,7 +47,7 @@ public record DatabaseEvent
             throw new InvalidOperationException("EventBody should not be null");
         }
         
-        Type? eventType = Type.GetType(EventTypeName);
+        Type? eventType = _domainAssembly.GetType(EventTypeName);
         if (eventType is null)
         {
             throw new InvalidOperationException($"Type not found: '{EventTypeName}'");
@@ -60,4 +61,6 @@ public record DatabaseEvent
         
         return new StoredEvent(AggregateId, SequenceNumber, Timestamp, eventData);
     }
+
+    private static Assembly _domainAssembly = typeof(CommandRouter).Assembly;
 }

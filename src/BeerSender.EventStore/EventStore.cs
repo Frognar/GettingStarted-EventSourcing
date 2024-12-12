@@ -22,6 +22,7 @@ public class EventStore (EventStoreConnectionFactory dbConnectionFactory)
                 , [EventTypeName]
                 , [EventBody]
                 , [RowVersion]
+            FROM [dbo].[Events]
             WHERE [AggregateId] = @AggregateId
             ORDER BY [SequenceNumber]
             """;
