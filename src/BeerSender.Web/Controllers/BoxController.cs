@@ -20,4 +20,12 @@ public class BoxController(CommandRouter router) : ControllerBase
         _router.HandleCommand(request.ToCommand());
         return Accepted();
     }
+
+    [HttpPost]
+    [Route("add-bear")]
+    public IActionResult AddBeerBottle([FromBody] AddBeerBottleRequest request)
+    {
+        _router.HandleCommand(request.ToCommand());
+        return Accepted();
+    }
 }

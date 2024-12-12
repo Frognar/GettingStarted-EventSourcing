@@ -1,3 +1,4 @@
+using BeerSender.Domain.Boxes;
 using BeerSender.Domain.Boxes.Commands;
 using BeerSender.Web.Contract;
 
@@ -9,5 +10,17 @@ internal static class BoxMapper
     {
         ArgumentNullException.ThrowIfNull(request);
         return new CreateBox(request.BoxId, request.DesiredNumberOfSpots);
+    }
+
+    public static AddBeerBottle ToCommand(this AddBeerBottleRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+        return new AddBeerBottle(
+            request.BoxId,
+            new BeerBottle(
+                request.Brewery,
+                request.Name,
+                request.AlcoholPercentage,
+                request.BeerType));
     }
 }
