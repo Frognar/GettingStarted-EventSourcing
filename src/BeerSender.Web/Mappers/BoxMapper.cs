@@ -35,4 +35,10 @@ internal static class BoxMapper
         ArgumentNullException.ThrowIfNull(request);
         return new CloseBox(request.BoxId);
     }
+
+    public static ShipBox ToCommand(this ShipBoxRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+        return new ShipBox(request.BoxId);
+    }
 }

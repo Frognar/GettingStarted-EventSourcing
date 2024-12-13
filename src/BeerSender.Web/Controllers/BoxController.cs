@@ -44,4 +44,12 @@ public class BoxController(CommandRouter router) : ControllerBase
         _router.HandleCommand(request.ToCommand());
         return Accepted();
     }
+
+    [HttpPost]
+    [Route("ship-box")]
+    public IActionResult ShipBox([FromBody] ShipBoxRequest request)
+    {
+        _router.HandleCommand(request.ToCommand());
+        return Accepted();
+    }
 }
