@@ -23,4 +23,10 @@ internal static class BoxMapper
                 request.AlcoholPercentage,
                 request.BeerType));
     }
+
+    public static AddShippingLabel ToCommand(this AddShippingLabelRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+        return new AddShippingLabel(request.BoxId, request.Label);
+    }
 }

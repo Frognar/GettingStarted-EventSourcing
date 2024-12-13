@@ -28,4 +28,12 @@ public class BoxController(CommandRouter router) : ControllerBase
         _router.HandleCommand(request.ToCommand());
         return Accepted();
     }
+
+    [HttpPost]
+    [Route("add-shipping-label")]
+    public IActionResult AddShippingLabel([FromBody] AddShippingLabelRequest request)
+    {
+        _router.HandleCommand(request.ToCommand());
+        return Accepted();
+    }
 }
