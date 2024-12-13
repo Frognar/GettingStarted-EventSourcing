@@ -36,4 +36,12 @@ public class BoxController(CommandRouter router) : ControllerBase
         _router.HandleCommand(request.ToCommand());
         return Accepted();
     }
+
+    [HttpPost]
+    [Route("close-box")]
+    public IActionResult CloseBox([FromBody] CloseBoxRequest request)
+    {
+        _router.HandleCommand(request.ToCommand());
+        return Accepted();
+    }
 }

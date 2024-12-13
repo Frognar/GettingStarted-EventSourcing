@@ -29,4 +29,10 @@ internal static class BoxMapper
         ArgumentNullException.ThrowIfNull(request);
         return new AddShippingLabel(request.BoxId, request.Label);
     }
+
+    public static CloseBox ToCommand(this CloseBoxRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+        return new CloseBox(request.BoxId);
+    }
 }
