@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>816a6659-2de4-4fdf-8ecf-58514d0d0b71</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.1.35" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0"/>
+        <PackageReference Include="Scalar.AspNetCore" Version="1.2.50" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BeerSender.Domain\BeerSender.Domain.csproj" />
+      <ProjectReference Include="..\BeerSender.EventStore\BeerSender.EventStore.csproj" />
+    </ItemGroup>
+
+</Project>
