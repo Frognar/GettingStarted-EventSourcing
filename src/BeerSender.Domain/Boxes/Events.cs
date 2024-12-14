@@ -46,5 +46,6 @@ public record FailedToShipBox(
     {
         BoxWasNotReady,
         BoxWasAlreadyShipped,
+        BoxHasNoShippingLabel
     }
 }

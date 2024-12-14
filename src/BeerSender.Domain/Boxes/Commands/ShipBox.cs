@@ -9,22 +9,27 @@ public class ShipBoxHandler(IEventStore eventStore)
     public override void Handle(ShipBox command)
     {
         ArgumentNullException.ThrowIfNull(command);
-        var boxStream = GetStream<Box>(command.BoxId);
-        var box = boxStream.GetEntity();
-        if (box.IsShipped)
+        EventStream<Box> boxStream = GetStream<Box>(command.BoxId);
+        Box box = boxStream.GetEntity();
+        if (box.IsClosed == false)
+        {
+            boxStream.Append(new FailedToShipBox(
+                FailedToShipBox.FailReason.BoxWasNotReady));
+        }
+        else if (box.ShippingLabel is null)
+        {
+            boxStream.Append(new FailedToShipBox(
+                FailedToShipBox.FailReason.BoxHasNoShippingLabel));
+        }
+        else if (box.IsShipped)
         {
 
             boxStream.Append(new FailedToShipBox(
                 FailedToShipBox.FailReason.BoxWasAlreadyShipped));
         }
-        else if (box.IsClosed)
-        {
-            boxStream.Append(new BoxShipped());
-        }
         else
         {
-            boxStream.Append(new FailedToShipBox(
-                FailedToShipBox.FailReason.BoxWasNotReady));
+            boxStream.Append(new BoxShipped());
         }
     }
 }
