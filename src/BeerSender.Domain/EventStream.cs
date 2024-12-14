@@ -10,11 +10,11 @@ public class EventStream<TEntity>(IEventStore eventStore, Guid aggregateId)
     where TEntity : AggregateRoot, new()
 {
     private int _lastSequenceNumber;
-    public TEntity GetEntity()
+    public TEntity GetEntity(int sequenceNumber = int.MaxValue)
     {
         var events = eventStore.GetEvents(aggregateId);
         TEntity entity = new();
-        foreach (StoredEvent @event in events)
+        foreach (StoredEvent @event in events.TakeWhile(e => e.SequenceNumber <= sequenceNumber))
         {
             entity.Apply((dynamic)@event.EventData);
             _lastSequenceNumber = @event.SequenceNumber;

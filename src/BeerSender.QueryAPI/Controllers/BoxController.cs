@@ -26,7 +26,9 @@ public class BoxController(
     [Route("{id}/version/{version}")]
     public Box GetById([FromRoute] Guid id, [FromRoute]int version)
     {
-        throw new NotImplementedException();
+        EventStream<Box> boxStream = new(eventStore, id);
+        Box box = boxStream.GetEntity(version);
+        return box;
     }
 
     [HttpGet]
