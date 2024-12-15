@@ -1,4 +1,5 @@
 ﻿using BeerSender.Projections.Database;
+using BeerSender.Projections.Projections;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
@@ -14,6 +15,7 @@ builder.ConfigureHostConfiguration(config =>
 builder.ConfigureServices((_, services) =>
 {
     services.RegisterDataConnections();
+    services.RegisterProjections();
 });
 
 IHost app = builder.Build();
