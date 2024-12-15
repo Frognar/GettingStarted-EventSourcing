@@ -10,7 +10,8 @@ public class AddShippingLabelHandler(IEventStore eventStore)
     public override void Handle(AddShippingLabel command)
     {
         ArgumentNullException.ThrowIfNull(command);
-        var boxStream = GetStream<Box>(command.BoxId);
+        EventStream<Box> boxStream = GetStream<Box>(command.BoxId);
+        Box box = boxStream.GetEntity();
         if (command.Label.IsValid())
         {
             boxStream.Append(new ShippingLabelAdded(command.Label));

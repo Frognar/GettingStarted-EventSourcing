@@ -10,8 +10,8 @@ public class CreateBoxHandler(IEventStore eventStore)
     public override void Handle(CreateBox command)
     {
         ArgumentNullException.ThrowIfNull(command);
-        var boxStream = GetStream<Box>(command.BoxId);
-        var capacity = BoxCapacity.Create(command.DesiredNumberOfSpots);
+        EventStream<Box> boxStream = GetStream<Box>(command.BoxId);
+        BoxCapacity capacity = BoxCapacity.Create(command.DesiredNumberOfSpots);
         boxStream.Append(new BoxCreated(capacity));
     }
 }

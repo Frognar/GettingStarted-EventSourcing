@@ -10,8 +10,8 @@ public class AddBeerBottleHandler(IEventStore eventStore)
     public override void Handle(AddBeerBottle command)
     {
         ArgumentNullException.ThrowIfNull(command);
-        var boxStream = GetStream<Box>(command.BoxId);
-        var box = boxStream.GetEntity();
+        EventStream<Box> boxStream = GetStream<Box>(command.BoxId);
+        Box box = boxStream.GetEntity();
         if (!box.IsFull)
         {
             boxStream.Append(new BeerBottleAdded(command.BeerBottle));

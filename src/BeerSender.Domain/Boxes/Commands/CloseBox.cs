@@ -9,8 +9,8 @@ public class CloseBoxHandler(IEventStore eventStore)
     public override void Handle(CloseBox command)
     {
         ArgumentNullException.ThrowIfNull(command);
-        var boxStream = GetStream<Box>(command.BoxId);
-        var box = boxStream.GetEntity();
+        EventStream<Box> boxStream = GetStream<Box>(command.BoxId);
+        Box box = boxStream.GetEntity();
         if (box.BeerBottles.Any())
         {
             boxStream.Append(new BoxClosed());
