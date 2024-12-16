@@ -8,5 +8,8 @@ internal static class ProjectionExtensions
     {
         services.AddTransient<OpenBoxProjection>();
         services.AddHostedService<ProjectionService<OpenBoxProjection>>();
+
+        services.AddTransient<UnshippedBoxProjection>();
+        services.AddHostedService<ProjectionService<UnshippedBoxProjection>>();
     }
 }
