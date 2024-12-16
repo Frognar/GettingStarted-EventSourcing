@@ -14,6 +14,7 @@ internal static class DatabaseExtensions
 
         services.AddScoped<CheckpointRepository>();
         services.AddScoped<OpenBoxRepository>();
+        services.AddScoped<UnshippedBoxRepository>();
 
     }
 }
