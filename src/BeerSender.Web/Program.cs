@@ -1,10 +1,12 @@
 using BeerSender.Domain;
 using BeerSender.EventStore;
+using BeerSender.Web.EventPublishing;
 using Scalar.AspNetCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
@@ -44,5 +46,7 @@ app.MapControllers();
 app.MapStaticAssets();
 app.MapRazorPages()
     .WithStaticAssets();
+
+app.MapHub<EventHub>("event-hub");
 
 app.Run();
