@@ -22,7 +22,7 @@ public class BoxController(CommandRouter router) : ControllerBase
     }
 
     [HttpPost]
-    [Route("add-bear")]
+    [Route("add-beer")]
     public IActionResult AddBeerBottle([FromBody] AddBeerBottleRequest request)
     {
         _router.HandleCommand(request.ToCommand());

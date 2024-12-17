@@ -5,11 +5,14 @@ using Dapper;
 namespace BeerSender.EventStore;
 
 #pragma warning disable CA1724
-public class EventStore (EventStoreConnectionFactory dbConnectionFactory)
+public class EventStore (
+    EventStoreConnectionFactory dbConnectionFactory,
+    INotificationService notificationService)
 #pragma warning restore CA1724
     : IEventStore
 {
     private readonly EventStoreConnectionFactory _dbConnectionFactory = dbConnectionFactory;
+    private readonly INotificationService _notificationService = notificationService;
 
     public IEnumerable<StoredEvent> GetEvents(Guid aggregateId)
     {
@@ -58,7 +61,8 @@ public class EventStore (EventStoreConnectionFactory dbConnectionFactory)
             _newEvents.Select(DatabaseEvent.FromStoredEvent),
             transaction);
 
-        _newEvents.Clear();
         transaction.Commit();
+        _newEvents.ForEach(e => _notificationService.PublishEvent(e.AggregateId, e.EventData));
+        _newEvents.Clear();
     }
 }

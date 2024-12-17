@@ -5,11 +5,11 @@ let connection = new signalR.HubConnectionBuilder().withUrl("/event-hub").build(
 
 // Subscribe to the PublishEvent messages from the hub
 // Just append them to the events list
-connection.on("PublishEvent", function (aggregate_id, event) {
+connection.on("PublishEvent", function (aggregate_id, event, eventType) {
     let li = document.createElement("li");
     document.getElementById("eventList").appendChild(li);
     let eventContent = JSON.stringify(event);
-    li.textContent = `${aggregate_id}: ${eventContent}`;
+    li.textContent = `${aggregate_id} - ${eventType}: ${eventContent}`;
 });
 
 // When the connection is opened, generate a random package ID
@@ -53,7 +53,7 @@ document.getElementById("addLabel").addEventListener("click", function (event) {
         }
     }
     // Post the command
-    postCommand("/api/Command/Box/add-label", command);
+    postCommand("/api/Command/Box/add-shipping-label", command);
     event.preventDefault();
 });
 

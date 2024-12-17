@@ -12,6 +12,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.RegisterDomain();
 builder.Services.RegisterEventStore();
+builder.Services.AddTransient<INotificationService, NotificationService>();
 
 builder.Services.AddEndpointsApiExplorer();
 
